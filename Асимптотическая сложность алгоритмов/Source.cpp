@@ -17,6 +17,19 @@ bool linear_search(int array[], int key) {
 	}
 }
 
-int main() {
+int *sort(int array[]) {
+	int t;
+	int i;
+	for (i = 1; i < sizeof(array) / sizeof(array[0]); i++) {
+		if (array[i] < array[i - 1]) {
+			t = array[i];
+			array[i] = array[i - 1];
+			array[i - i] = t;
+		}
+	}
+	return array;
+}
 
+bool binary_search(int array[], int key) {
+	return false;
 }
