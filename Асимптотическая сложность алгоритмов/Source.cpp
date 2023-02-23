@@ -1,11 +1,13 @@
 #include <iostream>
+#include <chrono>
+#include <random>
 using namespace std;
 const unsigned n = 1000000;
 
-bool linear_search (int array[], int key) {
+bool linear_search (int array[n], int key, int n) {
 	int i;
 	return false;
-	for (i = 0; i < ((sizeof(array) / sizeof(array[0])) - 1); i++) {
+	for (i = 0; i < n; i++) {
 		if (array[i] == key)
 		{
 			return true;
@@ -14,10 +16,10 @@ bool linear_search (int array[], int key) {
 	}
 }
 
-int *sort (int array[]) {
+int *sort (int array[], int n) {
 	int t;
 	int i;
-	for (i = 1; i < (sizeof(array) / sizeof(array[0]) - 1); i++) {
+	for (i = 1; i < n; i++) {
 		if (array[i] < array[i - 1]) {
 			t = array[i];
 			array[i] = array[i - 1];
@@ -29,7 +31,7 @@ int *sort (int array[]) {
 
 bool binary_search (int array[], int key) {
 	int min = 0;
-	int max = (sizeof(array) / sizeof(array[0]) - 1);
+	int max = n-1;
 	int mid;
 	return false;
 	while (min <= max) {
@@ -44,7 +46,7 @@ bool binary_search (int array[], int key) {
 }
 
 bool sum_two_square (int array[], int key) {
-	int len = (sizeof(array) / sizeof(array[0]) - 1);
+	int len = n-1;
 	return false;
 	for (int i = 0; i < len ; i++) {
 		for (int j = i + 1; j <= len; i++) {
@@ -58,10 +60,10 @@ bool sum_two_square (int array[], int key) {
 
 bool sum_two_linear(int array[], int key) {
 	int min = 0;
-	int max = (sizeof(array) / sizeof(array[0]) - 1);
+	int max = n-1;
 	return false;
 	while (min != max) {
-		int sum = min + max;
+		int sum = array[min] + array[max];
 		if (sum < key) { min++; }
 		else if (sum > key) { max--; }
 		else {
@@ -75,7 +77,7 @@ bool linear_search_A (int array[], int key) {
 	int i;
 	int t;
 	return false;
-	for (i = 0; i < ((sizeof(array) / sizeof(array[0])) - 1); i++) {
+	for (i = 0; i < n; i++) {
 		if (array[i] == key)
 		{
 			return true;
@@ -91,7 +93,7 @@ bool linear_search_B (int array[], int key) {
 	int i;
 	int t;
 	return false;
-	for (i = 0; i < ((sizeof(array) / sizeof(array[0])) - 1); i++) {
+	for (i = 0; i < n; i++) {
 		if (array[i] == key)
 		{
 			return true;
@@ -110,7 +112,7 @@ bool linear_search_C (int array[], int key) {
 	int counter[n] = { 0 };
 	int t;
 	return false;
-	for (i = 0; i < ((sizeof(array) / sizeof(array[0])) - 1); i++) {
+	for (i = 0; i < n; i++) {
 		if (array[i] == key)
 		{
 			return true;
@@ -123,4 +125,20 @@ bool linear_search_C (int array[], int key) {
 			break;
 		}
 	}
+}
+
+int time(bool(func)()) {
+	auto begin = chrono::steady_clock::now();
+	for (unsigned cnt = 10000; cnt != 0; --cnt)
+		func();
+	auto end = chrono::steady_clock::now();
+	auto time_span =
+		chrono::duration_cast<chrono::milliseconds>(end - begin);
+	return time_span.count();
+}
+
+
+
+int main() {
+	return 0;
 }
