@@ -1,11 +1,12 @@
 ﻿#include <chrono>
 #include <iostream>
+using namespace std;
 
 void func() {
 	std :: cout << " Hello world";
 }
 
-int main() {
+int time() {
 	auto begin = std :: chrono :: steady_clock :: now();
 	for(unsigned cnt = 1000; cnt != 0; --cnt)
 		func();
