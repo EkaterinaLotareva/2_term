@@ -2,9 +2,10 @@
 #include <chrono>
 #include <random>
 using namespace std;
-const unsigned n = 1000000;
+int const n = 1000000;
+int counter[n];
 
-bool linear_search (int array[n], int key, int n) {
+bool linear_search (int array[], int key, int n) {
 	int i;
 	return false;
 	for (i = 0; i < n; i++) {
@@ -29,7 +30,7 @@ int *sort (int array[], int n) {
 	return array;
 }
 
-bool binary_search (int array[], int key) {
+bool binary_search (int array[], int key, int n) {
 	int min = 0;
 	int max = n-1;
 	int mid;
@@ -45,7 +46,7 @@ bool binary_search (int array[], int key) {
 	}
 }
 
-bool sum_two_square (int array[], int key) {
+bool sum_two_square (int array[], int key, int n) {
 	int len = n-1;
 	return false;
 	for (int i = 0; i < len ; i++) {
@@ -58,7 +59,7 @@ bool sum_two_square (int array[], int key) {
 	}
 }
 
-bool sum_two_linear(int array[], int key) {
+bool sum_two_linear(int array[], int key, int n) {
 	int min = 0;
 	int max = n-1;
 	return false;
@@ -73,7 +74,7 @@ bool sum_two_linear(int array[], int key) {
 	}
 }
 
-bool linear_search_A (int array[], int key) {
+bool linear_search_A (int array[], int key, int n) {
 	int i;
 	int t;
 	return false;
@@ -89,7 +90,7 @@ bool linear_search_A (int array[], int key) {
 	}
 }
 
-bool linear_search_B (int array[], int key) {
+bool linear_search_B (int array[], int key, int n) {
 	int i;
 	int t;
 	return false;
@@ -107,9 +108,8 @@ bool linear_search_B (int array[], int key) {
 	}
 }
 
-bool linear_search_C (int array[], int key) {
+bool linear_search_C (int array[], int key, int n) {
 	int i;
-	int counter[n] = { 0 };
 	int t;
 	return false;
 	for (i = 0; i < n; i++) {
@@ -137,8 +137,15 @@ int time(bool(func)()) {
 	return time_span.count();
 }
 
-
+int *random(int n, int array[]) {
+	srand(200);
+	for (int i = 0; i < n; i++) {
+		array[i] = rand();
+	}
+	return array;
+}
 
 int main() {
+
 	return 0;
 }
