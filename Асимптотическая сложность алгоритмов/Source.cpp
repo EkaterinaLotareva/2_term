@@ -1,7 +1,4 @@
 #include <iostream>
-#include <chrono>
-#include <random>
-#include <array>
 using namespace std;
 
 bool linear_search(int array[], int key) {
