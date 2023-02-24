@@ -1,6 +1,7 @@
-#include <iostream>
+﻿#include <iostream>
 #include <chrono>
 #include <random>
+#include <fstream>
 using namespace std;
 int const n = 1000000;
 int counter[n];
@@ -146,6 +147,12 @@ int *random(int n, int array[]) {
 }
 
 int main() {
+	ofstream out;         
+	out.open("C:\\c_projects\\Асимптотическая сложность алгоритмов\\data.txt"); 
+	if (out.is_open())
+	{
+		out << "Hello World!" << endl;
+	}
 
 	return 0;
 }
