@@ -3,25 +3,25 @@
 #include <random>
 #include <fstream>
 using namespace std;
-int const n = 1000000;
-int counter[n];
+int const N = 10000;
+int const M = 100;
+int const K = 100000;
 
 bool linear_search (int array[], int key, int n) {
-	int i;
-	return false;
-	for (i = 0; i < n; i++) {
+
+	for (int i = 0; i < n; i++) {
 		if (array[i] == key)
 		{
 			return true;
 			break;
 		}
 	}
+	return false;
 }
 
 int *sort (int array[], int n) {
 	int t;
-	int i;
-	for (i = 1; i < n; i++) {
+	for (int i = 1; i < n; i++) {
 		if (array[i] < array[i - 1]) {
 			t = array[i];
 			array[i] = array[i - 1];
@@ -35,7 +35,6 @@ bool binary_search (int array[], int key, int n) {
 	int min = 0;
 	int max = n-1;
 	int mid;
-	return false;
 	while (min <= max) {
 		mid = (min + max) / 2;
 		if (array[mid] == key) {
@@ -45,11 +44,11 @@ bool binary_search (int array[], int key, int n) {
 		else if (key > array[mid]) { min = mid; }
 		else { max = mid; }
 	}
+	return false;
 }
 
 bool sum_two_square (int array[], int key, int n) {
 	int len = n-1;
-	return false;
 	for (int i = 0; i < len ; i++) {
 		for (int j = i + 1; j <= len; i++) {
 			if (array[i] + array[j] == key) {
@@ -58,12 +57,12 @@ bool sum_two_square (int array[], int key, int n) {
 			}
 		}
 	}
+	return false;
 }
 
 bool sum_two_linear(int array[], int key, int n) {
 	int min = 0;
 	int max = n-1;
-	return false;
 	while (min != max) {
 		int sum = array[min] + array[max];
 		if (sum < key) { min++; }
@@ -73,13 +72,12 @@ bool sum_two_linear(int array[], int key, int n) {
 			break;
 		}
 	}
+	return false;
 }
 
 bool linear_search_A (int array[], int key, int n) {
-	int i;
 	int t;
-	return false;
-	for (i = 0; i < n; i++) {
+	for (int i = 0; i < n; i++) {
 		if (array[i] == key)
 		{
 			return true;
@@ -89,13 +87,12 @@ bool linear_search_A (int array[], int key, int n) {
 			break;
 		}
 	}
+	return false;
 }
 
 bool linear_search_B (int array[], int key, int n) {
-	int i;
 	int t;
-	return false;
-	for (i = 0; i < n; i++) {
+	for (int i = 0; i < n; i++) {
 		if (array[i] == key)
 		{
 			return true;
@@ -107,13 +104,13 @@ bool linear_search_B (int array[], int key, int n) {
 			break;
 		}
 	}
+	return false;
 }
 
 bool linear_search_C (int array[], int key, int n) {
-	int i;
 	int t;
-	return false;
-	for (i = 0; i < n; i++) {
+	int* counter = new int[n];
+	for (int i = 0; i < n; i++) {
 		if (array[i] == key)
 		{
 			return true;
@@ -126,33 +123,104 @@ bool linear_search_C (int array[], int key, int n) {
 			break;
 		}
 	}
+	return false;
 }
 
-int time(bool(func)()) {
-	auto begin = chrono::steady_clock::now();
-	for (unsigned cnt = 10000; cnt != 0; --cnt)
-		func();
-	auto end = chrono::steady_clock::now();
-	auto time_span =
-		chrono::duration_cast<chrono::milliseconds>(end - begin);
-	return time_span.count();
-}
 
-int *random(int n, int array[]) {
+int *random(int n) {
 	srand(200);
+	int *arr = new int[n];
 	for (int i = 0; i < n; i++) {
-		array[i] = rand();
-	}
-	return array;
+		arr[i] = rand();
+	};
+	return arr;
 }
+
+void writing_to_file(string s) {
+	std::ofstream ofs;
+	ofs.open("C:\\c_projects\\Asymptotic complexity of algorithms\\data.txt", std::ofstream::out | std::ofstream::app);
+
+	ofs << s <<endl;
+
+	ofs.close();
+}
+
+void time_linear_search() {
+	std::ofstream ofs;
+	ofs.open("C:\\c_projects\\Asymptotic complexity of algorithms\\data.txt", std::ofstream::out | std::ofstream::app);
+	for (int i = M; i <= N; i+=M) {
+		auto array = random(i);
+		auto begin = chrono::steady_clock::now();
+		for (int j = 0; j <= K; j++) {
+			linear_search(array, rand(), i);
+		}
+		auto end = chrono::steady_clock::now();
+		auto time_span =
+			chrono::duration_cast<chrono::milliseconds>(end - begin);
+		
+		ofs << time_span.count() << "," << endl;
+	}
+	ofs.close();
+}
+
+void time_binary_search() {
+	std::ofstream ofs;
+	ofs.open("C:\\c_projects\\Asymptotic complexity of algorithms\\data.txt", std::ofstream::out | std::ofstream::app);
+	for (int i = M; i <= N; i+=M) {
+		auto array = random(i);
+		auto arr = sort(array, i);
+		auto begin = chrono::steady_clock::now();
+		for (int j = 0; j <= K; j++) {
+			binary_search(arr, rand(), i);
+		}
+		auto end = chrono::steady_clock::now();
+		auto time_span =
+			chrono::duration_cast<chrono::milliseconds>(end - begin);
+		
+		ofs << time_span.count() << endl;
+	}
+	ofs.close();
+}
+
+void time_sum_two_square() {
+	std::ofstream ofs;
+	ofs.open("C:\\c_projects\\Asymptotic complexity of algorithms\\data.txt", std::ofstream::out | std::ofstream::app);
+	for (int i = M; i <= N; i+=M) {
+		auto array = random(i);
+		auto begin = chrono::steady_clock::now();
+		for (int j = 0; j <= K; j++) {
+			sum_two_square(array, rand(), i);
+		}
+		auto end = chrono::steady_clock::now();
+		auto time_span =
+			chrono::duration_cast<chrono::milliseconds>(end - begin);
+		
+		ofs << time_span.count() << endl;
+	}
+	ofs.close();
+}
+
+void time_sum_two_linear() {
+	std::ofstream ofs;
+	ofs.open("C:\\c_projects\\Asymptotic complexity of algorithms\\data.txt", std::ofstream::out | std::ofstream::app);
+	for (int i = M; i <= N; i+=M) {
+		auto array = random(i);
+		auto arr = sort(array, i);
+		auto begin = chrono::steady_clock::now();
+		for (int j = 0; j <= K; j++) {
+			sum_two_linear(arr, rand(), i);
+		}
+		auto end = chrono::steady_clock::now();
+		auto time_span =
+			chrono::duration_cast<chrono::milliseconds>(end - begin);
+		
+		ofs << time_span.count() << endl;
+	}
+	ofs.close();
+}
+
+
 
 int main() {
-	ofstream out;         
-	out.open("C:\\c_projects\\Асимптотическая сложность алгоритмов\\data.txt"); 
-	if (out.is_open())
-	{
-		out << "Hello World!" << endl;
-	}
-
-	return 0;
+	time_linear_search();
 }
