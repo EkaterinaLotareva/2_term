@@ -154,7 +154,7 @@ void writing_to_file(string s) {
 	ofs.close();
 }
 
-void separate_atring() {
+void separate_string() {
 	std::ofstream ofs;
 	ofs.open("C:\\c_projects\\Asymptotic complexity of algorithms\\data.txt", std::ofstream::out | std::ofstream::app);
 
@@ -355,22 +355,22 @@ void time_linear_search_C_unevenly() {
 
 int main() {
 	time_linear_search();
-	separate_atring();
+	separate_string();
 	time_binary_search();
-	separate_atring();
+	separate_string();
 	time_sum_two_square();
-	separate_atring();
+	separate_string();
 	time_sum_two_linear();
-	separate_atring();
+	separate_string();
 	time_linear_search_A_evenly();
-	separate_atring();
+	separate_string();
 	time_linear_search_B_evenly();
-	separate_atring();
+	separate_string();
 	time_linear_search_C_evenly();
-	separate_atring();
+	separate_string();
 	time_linear_search_A_unevenly();
-	separate_atring();
+	separate_string();
 	time_linear_search_B_unevenly();
-	separate_atring();
+	separate_string();
 	time_linear_search_C_unevenly();
 }
